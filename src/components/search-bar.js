@@ -6,7 +6,7 @@ const SearchBar = () => {
     <input
       type='text'
       className='form-control search-input'
-      placeholder='type to search'
+      placeholder='type to find'
     />
   );
 };
