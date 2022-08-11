@@ -12,7 +12,7 @@ const root = createRoot(container);
 
 const App = () => {
   const todoData = [
-    { label: 'Drink Coffhhhhhee', important: false, id: 1 },
+    { label: 'Drink Coffee', important: false, id: 1 },
     { label: 'Make React App', important: true, id: 2 },
     { label: 'Drink Beer', important: false, id: 3 },
   ];
