@@ -120,7 +120,10 @@ class App extends Component {
         <AppHeader toDo={todoCount} done={doneCount} />
         <div className='top-panel d-flex'>
           <SearchBar onSearchChange={this.onSearchChange} />
-          <ItemStatusFilter filter = {filter} onFilterChange = {this.onFilterChange}/>
+          <ItemStatusFilter
+            filter={filter}
+            onFilterChange={this.onFilterChange}
+          />
         </div>
         <TodoList
           todos={visibleItems}
@@ -133,5 +136,7 @@ class App extends Component {
     );
   }
 }
+
+console.log('test');
 
 root.render(<App />);
