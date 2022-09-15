@@ -21,6 +21,10 @@ class App extends Component {
     ],
     term: '',
     filter: 'all',
+    isPlaying: false,
+    timer: null,
+
+    activeButton: null,
   };
 
   createToDoItem(label) {
@@ -109,6 +113,28 @@ class App extends Component {
     }
   }
 
+  timer() {
+    this.setState((state) => state.timer++);
+  }
+
+  onClickPlay = (id) => {
+    if (id === this.state.activeButton) {
+      this.setState((state) => (state.timer = 0));
+    }
+
+    this.setState((state) => (state.isPlaying = !state.isPlaying));
+    this.setState((state) => (state.activeButton = id));
+    this.timerId = setInterval(this.timer.bind(this), 1000);
+
+    console.log(id);
+  };
+
+  onClickStop = (id) => {
+    clearInterval(this.timerId);
+    this.setState((state) => (state.isPlaying = !state.isPlaying));
+    console.log(id);
+  };
+
   render() {
     const { todoData, term, filter } = this.state;
     const visibleItems = this.filter(this.search(todoData, term), filter);
@@ -120,15 +146,23 @@ class App extends Component {
         <AppHeader toDo={todoCount} done={doneCount} />
         <div className='top-panel d-flex'>
           <SearchBar onSearchChange={this.onSearchChange} />
-          <ItemStatusFilter filter = {filter} onFilterChange = {this.onFilterChange}/>
+          <ItemStatusFilter
+            filter={filter}
+            onFilterChange={this.onFilterChange}
+          />
         </div>
         <TodoList
           todos={visibleItems}
           onDeleted={this.deleteItem}
           onToggleDone={this.onToggleDone}
           onToggleImportant={this.onToggleImportant}
+          isPlaying={this.state.isPlaying}
+          onClickPlay={this.onClickPlay}
+          onClickStop={this.onClickStop}
+          activeButton={this.state.activeButton}
         />
         <ItemAddForm addElement={this.addElement} />
+        {this.state.timer}
       </div>
     );
   }

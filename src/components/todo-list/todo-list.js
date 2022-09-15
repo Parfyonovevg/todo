@@ -2,7 +2,17 @@ import React from 'react';
 import TodoListItem from '../todo-list-item';
 import './todo-list.css';
 
-const TodoList = ({ todos, onDeleted, onToggleImportant, onToggleDone }) => {
+const TodoList = ({
+  todos,
+  onDeleted,
+  onToggleImportant,
+  onToggleDone,
+  isPlaying,
+  
+  onClickPlay,
+  onClickStop,
+  activeButton,
+}) => {
   const elements = todos.map((item) => {
     const { id, ...itemProps } = item;
 
@@ -13,6 +23,12 @@ const TodoList = ({ todos, onDeleted, onToggleImportant, onToggleDone }) => {
           onDeleted={() => onDeleted(id)}
           onToggleDone={() => onToggleDone(id)}
           onToggleImportant={() => onToggleImportant(id)}
+          isPlaying={isPlaying}
+         
+          onClickPlay={() => onClickPlay(id)}
+          onClickStop={() => onClickStop(id)}
+          activeButton={activeButton}
+          id={id}
         />
       </li>
     );
