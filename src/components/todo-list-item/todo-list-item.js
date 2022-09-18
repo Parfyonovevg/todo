@@ -19,7 +19,7 @@ export default class TodoListItem extends Component {
     let classNames = 'todo-list-item';
 
     let disableOrNot = true;
-
+    console.log(true);
     if (this.props.id === activeButton) {
       disableOrNot = false;
     }
