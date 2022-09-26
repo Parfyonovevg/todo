@@ -8,9 +8,9 @@ const TodoList = ({
   onToggleImportant,
   onToggleDone,
   isPlaying,
-  
-  onClickPlay,
-  onClickStop,
+
+  onPlayClick,
+  onStopClick,
   activeButton,
 }) => {
   const elements = todos.map((item) => {
@@ -24,9 +24,8 @@ const TodoList = ({
           onToggleDone={() => onToggleDone(id)}
           onToggleImportant={() => onToggleImportant(id)}
           isPlaying={isPlaying}
-         
-          onClickPlay={() => onClickPlay(id)}
-          onClickStop={() => onClickStop(id)}
+          onPlayClick={() => onPlayClick(id)}
+          onStopClick={() => onStopClick(id)}
           activeButton={activeButton}
           id={id}
         />

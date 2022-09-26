@@ -113,28 +113,26 @@ class App extends Component {
     }
   }
 
-  timer() {
-    this.setState((state) => state.timer++);
-  }
+  timer = () => this.setState(({ timer }) => ({ timer: timer + 1 }));
 
-  onClickPlay = (id) => {
-    if (id === this.state.activeButton) {
-      this.setState((state) => (state.timer = 0));
+  onPlayClick = (id) => {
+    if (id !== this.state.activeButton) {
+      this.setState({ timer: 0 });
     }
 
-    this.setState((state) => (state.isPlaying = !state.isPlaying));
-    this.setState((state) => (state.activeButton = id));
+    this.setState({ isPlaying: !this.state.isPlaying });
+    this.setState({ activeButton: id });
     this.timerId = setInterval(this.timer.bind(this), 1000);
-
-    console.log(id);
   };
 
-  onClickStop = (id) => {
+  onStopClick = () => {
     clearInterval(this.timerId);
-    this.setState((state) => (state.isPlaying = !state.isPlaying));
-    console.log(id);
+    this.setState({ isPlaying: !this.state.isPlaying });
   };
-
+  
+  componentWillUnmount() {
+    clearInterval(this.timerId);
+  }
   render() {
     const { todoData, term, filter } = this.state;
     const visibleItems = this.filter(this.search(todoData, term), filter);
@@ -157,8 +155,8 @@ class App extends Component {
           onToggleDone={this.onToggleDone}
           onToggleImportant={this.onToggleImportant}
           isPlaying={this.state.isPlaying}
-          onClickPlay={this.onClickPlay}
-          onClickStop={this.onClickStop}
+          onPlayClick={this.onPlayClick}
+          onStopClick={this.onStopClick}
           activeButton={this.state.activeButton}
         />
         <ItemAddForm addElement={this.addElement} />
