@@ -25,3 +25,8 @@
   font-weight: bold;
   color: steelblue;
 }
+
+.play-pause {
+  background-color: inherit;
+  border: 0px;
+}
