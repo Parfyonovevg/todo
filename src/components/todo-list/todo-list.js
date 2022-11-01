@@ -8,7 +8,7 @@ const TodoList = ({
   onToggleImportant,
   onToggleDone,
   isPlaying,
-
+  timer,
   onPlayClick,
   onStopClick,
   activeButton,
@@ -28,6 +28,7 @@ const TodoList = ({
           onStopClick={() => onStopClick(id)}
           activeButton={activeButton}
           id={id}
+          timer={timer}
         />
       </li>
     );

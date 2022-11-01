@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import StopButton from '../icons/StopButton';
-import PlayButton from '../icons/PlayButton';
 import './todo-list-item.css';
 export default class TodoListItem extends Component {
- 
   render() {
     const {
       label,
@@ -15,7 +12,7 @@ export default class TodoListItem extends Component {
       onPlayClick,
       onStopClick,
       isPlaying,
-
+      timer,
       activeButton,
     } = this.props;
 
@@ -35,13 +32,23 @@ export default class TodoListItem extends Component {
         <span className='todo-list-item-label' onClick={onToggleDone}>
           {label}
         </span>
+        {!isPlayDisabled && <span>{timer}</span>}
         {isPlaying ? (
-          <button disabled={isPlayDisabled} onClick={onStopClick}>
-            <StopButton />
+          <button
+            type='button'
+            className='btn btn-outline-danger btn-sm float-right'
+            disabled={isPlayDisabled}
+            onClick={onStopClick}
+          >
+            <i className='fa fa-stop' />
           </button>
         ) : (
-          <button className='got' onClick={onPlayClick}>
-            <PlayButton />
+          <button
+            type='button'
+            className='btn btn-outline-success btn-sm float-right'
+            onClick={onPlayClick}
+          >
+            <i className='fa fa-play' />
           </button>
         )}
         <button

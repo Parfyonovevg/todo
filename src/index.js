@@ -158,9 +158,10 @@ class App extends Component {
           onPlayClick={this.onPlayClick}
           onStopClick={this.onStopClick}
           activeButton={this.state.activeButton}
+          timer = {this.state.timer}
         />
         <ItemAddForm addElement={this.addElement} />
-        {this.state.timer}
+        
       </div>
     );
   }
